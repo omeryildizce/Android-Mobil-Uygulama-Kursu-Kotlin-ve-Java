@@ -61,7 +61,7 @@ public class Arrays {
         System.out.println(hashMap.get(5));
         System.out.println(hashMap.get(10));
 
-        
+
     }
 
 
