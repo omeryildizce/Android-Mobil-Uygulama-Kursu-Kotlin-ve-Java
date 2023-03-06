@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="enter_number">Sayı giriniz</string>
+    <string name="result">Sonuç:</string>
+    <string name="app_name">Basit Hesap Makinesi</string>
+</resources>
