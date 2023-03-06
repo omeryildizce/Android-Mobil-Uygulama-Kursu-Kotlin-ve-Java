@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleCalculator</string>
+    <string name="enter_number">Enter Number</string>
+    <string name="result">Result:</string>
 </resources>
