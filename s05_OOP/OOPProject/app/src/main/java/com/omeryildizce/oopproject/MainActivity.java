@@ -19,7 +19,12 @@ public class MainActivity extends AppCompatActivity {
         newUser.name = "Ali";
         newUser.job = "Musician";
 
+        Musician james = new Musician("james", "Guitar", 25);
+        // james.age = 65; //private
+        // System.out.println(james.age);
 
+        james.setAge(65);
+        System.out.println(james.getAge());
 
     }
 }
