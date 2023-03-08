@@ -10,5 +10,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        User myUser = new User();
+        myUser.name = "Ömer";
+        myUser.job = "Unemployed";
+
+        User newUser = new User();
+        newUser.name = "Ali";
+        newUser.job = "None";
+
+        
+
     }
 }
