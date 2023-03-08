@@ -1,5 +1,6 @@
 package com.omeryildizce.oopproject;
 
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -33,9 +34,9 @@ public class MainActivity extends AppCompatActivity {
         // Polymorphism
         //  Static Polymorphism
         Mathematics mathematics = new Mathematics();
-        mathematics.sum(10,15,20,30);
+        mathematics.sum(10, 15, 20, 30);
         mathematics.sum(10);
-        mathematics.sum(10,15);
+        mathematics.sum(10, 15);
         mathematics.sum();
         //  Dynamic Polymorphism
         Animal animal = new Animal();
@@ -43,6 +44,21 @@ public class MainActivity extends AppCompatActivity {
         Dog dog = new Dog();
         dog.sing();
         dog.test();
+
+        // Abstract and Interface
+        String roomName = HouseDecor.roomName;
+
+        Piano mypiano = new Piano();
+        Instrument myPiano = new Piano();
+        HouseDecor myPiano2 = new Piano();
+
+        mypiano.info();
+        mypiano.brand = "Yamaha";
+        mypiano.digital =true;
+
+        myPiano.info();
+        myPiano2 = mypiano;
+
 
     }
 }
