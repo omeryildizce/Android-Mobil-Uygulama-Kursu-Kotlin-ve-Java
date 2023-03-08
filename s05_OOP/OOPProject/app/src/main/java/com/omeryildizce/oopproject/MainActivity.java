@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         User newUser = new User("Ali", "Musician");
         newUser.name = "Ali";
         newUser.job = "Musician";
-
+        System.out.println(newUser.information());
         Musician james = new Musician("james", "Guitar", 25);
         // james.age = 65; //private
         // System.out.println(james.age);
