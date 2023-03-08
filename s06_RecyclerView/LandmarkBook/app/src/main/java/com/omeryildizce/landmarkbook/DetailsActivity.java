@@ -2,6 +2,7 @@ package com.omeryildizce.landmarkbook;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -17,6 +18,11 @@ public class DetailsActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        binding.countryText.setText("Test");
+        Intent intent = getIntent();
+        // Casting
+        Landmark selectedLandmark = (Landmark) intent.getSerializableExtra("landmark");
+        binding.nameText.setText(selectedLandmark.name);
+        binding.countryText.setText(selectedLandmark.country);
+        binding.imageView.setImageResource(selectedLandmark.image);
     }
 }
