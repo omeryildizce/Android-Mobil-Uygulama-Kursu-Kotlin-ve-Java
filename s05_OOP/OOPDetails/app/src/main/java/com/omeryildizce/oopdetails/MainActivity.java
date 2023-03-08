@@ -18,5 +18,8 @@ public class MainActivity extends AppCompatActivity {
         System.out.println(Kedi.turIsmi);
         kedi1.konusedi();
         Kedi.konusediStatic();
+
+        Kopek kopek = new Kopek("fed", "kırmızı","siyah");
+        System.out.println(kopek.toString());
     }
 }
