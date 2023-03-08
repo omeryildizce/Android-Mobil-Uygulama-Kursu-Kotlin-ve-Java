@@ -37,7 +37,12 @@ public class MainActivity extends AppCompatActivity {
         mathematics.sum(10);
         mathematics.sum(10,15);
         mathematics.sum();
-        //  Static Polymorphism
+        //  Dynamic Polymorphism
+        Animal animal = new Animal();
+        animal.sing();
+        Dog dog = new Dog();
+        dog.sing();
+        dog.test();
 
     }
 }
