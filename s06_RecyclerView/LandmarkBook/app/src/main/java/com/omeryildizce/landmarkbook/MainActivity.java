@@ -2,8 +2,10 @@ package com.omeryildizce.landmarkbook;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.omeryildizce.landmarkbook.databinding.ActivityMainBinding;
@@ -43,5 +45,14 @@ public class MainActivity extends AppCompatActivity {
         // mapping
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, landmarks.stream().map(landmark -> landmark.name).collect(Collectors.toList()));
         binding.listView.setAdapter(arrayAdapter);
+        binding.listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(MainActivity.this, DetailsActivity.class);
+                intent.putExtra("landmark", landmarks.get(position));
+                startActivity(intent);
+
+            }
+        });
     }
 }
