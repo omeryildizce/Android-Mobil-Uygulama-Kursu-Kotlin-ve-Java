@@ -2,7 +2,9 @@ package com.omeryildizce.landmarkbook;
 
 import androidx.annotation.NonNull;
 
-public class Landmark {
+import java.io.Serializable;
+
+public class Landmark implements Serializable  {
     String name;
     String country;
     int image;
