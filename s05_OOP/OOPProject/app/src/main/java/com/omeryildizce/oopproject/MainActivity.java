@@ -29,5 +29,15 @@ public class MainActivity extends AppCompatActivity {
         SuperMusician lars = new SuperMusician("lars", "Guitar", 25);
         System.out.println(lars.sing());
         System.out.println(lars.getAge());
+
+        // Polymorphism
+        //  Static Polymorphism
+        Mathematics mathematics = new Mathematics();
+        mathematics.sum(10,15,20,30);
+        mathematics.sum(10);
+        mathematics.sum(10,15);
+        mathematics.sum();
+        //  Static Polymorphism
+
     }
 }
