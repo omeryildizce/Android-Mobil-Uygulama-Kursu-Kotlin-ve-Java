@@ -1,6 +1,6 @@
 package com.omeryildizce.oopdetails;
 
-public class Kedi {
+public class Kedi implements Egitim {
     private String isim;
     private String gozRengi;
     private String tuyRengi;
@@ -21,5 +21,11 @@ public class Kedi {
     }
     public void konusedi(){
         System.out.println("Benim ismim: " + this.isim + "\nBenim türüm: " + turIsmi);
+    }
+
+    @Override
+    public boolean egitimAl() {
+        System.out.println("Kediler eğitim almaz");
+        return false;
     }
 }
