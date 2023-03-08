@@ -4,10 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 
 import com.omeryildizce.landmarkbook.databinding.ActivityMainBinding;
 
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class MainActivity extends AppCompatActivity {
     Landmark pisa;
@@ -16,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     Landmark londonbridge;
     ArrayList<Landmark> landmarks;
     private ActivityMainBinding binding;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,5 +37,11 @@ public class MainActivity extends AppCompatActivity {
         landmarks.add(eiffel);
         landmarks.add(colloseum);
         landmarks.add(londonbridge);
+
+        // Adapter
+        // Listview
+        // mapping
+        ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, landmarks.stream().map(landmark -> landmark.name).collect(Collectors.toList()));
+        binding.listView.setAdapter(arrayAdapter);
     }
 }
