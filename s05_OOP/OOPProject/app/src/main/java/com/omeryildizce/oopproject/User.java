@@ -1,6 +1,6 @@
 package com.omeryildizce.oopproject;
 
-public class User {
+public class User extends People{
     // Prpperty
     String name;
     String job;
