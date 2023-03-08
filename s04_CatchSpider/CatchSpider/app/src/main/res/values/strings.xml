@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Catch Spider</string>
     <string name="spider">spider</string>
-    <string name="time_10">Time:</string>
+    <string name="time_10">Time: 10</string>
     <string name="score_00">Score:</string>
 </resources>
