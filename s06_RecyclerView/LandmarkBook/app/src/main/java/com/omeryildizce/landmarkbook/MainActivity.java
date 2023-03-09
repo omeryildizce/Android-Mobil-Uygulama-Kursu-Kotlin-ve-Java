@@ -1,6 +1,7 @@
 package com.omeryildizce.landmarkbook;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,6 +22,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Landmark> landmarks;
     private ActivityMainBinding binding;
 
+    LandmarkAdapter landmarkAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,10 @@ public class MainActivity extends AppCompatActivity {
         landmarks.add(colloseum);
         landmarks.add(londonbridge);
 
-        // Adapter
+        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        landmarkAdapter = new LandmarkAdapter(landmarks);
+        binding.recyclerView.setAdapter(landmarkAdapter);
+    /*    // Adapter
         // Listview
         // mapping
         ArrayAdapter arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, landmarks.stream().map(landmark -> landmark.name).collect(Collectors.toList()));
@@ -53,6 +59,6 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
 
             }
-        });
+        });*/
     }
 }
