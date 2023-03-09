@@ -35,6 +35,7 @@ public class ArtActivity extends AppCompatActivity {
         binding = ActivityArtBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        registerLauncher();
     }
 
     public void save(View view) {
@@ -42,26 +43,55 @@ public class ArtActivity extends AppCompatActivity {
     }
 
     public void selectImage(View view) {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                Snackbar.make(view, "Permission needed for gallery", Snackbar.LENGTH_INDEFINITE)
-                        .setAction("Give Permission", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                // request permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_MEDIA_IMAGES)) {
+                    Snackbar.make(view, "Permission needed for gallery", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Give Permission", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // request permission
+                                    permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
 
-                            }
-                        })
-                        .show();
+                                }
+                            })
+                            .show();
+                } else {
+                    // request permission
+                    permissionLauncher.launch(Manifest.permission.READ_MEDIA_IMAGES);
+                }
+
             } else {
-                // request permission
+                // galery
+                Intent intentToGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intentToGallery);
             }
-
         } else {
-            // galery
-            Intent intentToGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
 
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+                    Snackbar.make(view, "Permission needed for gallery", Snackbar.LENGTH_INDEFINITE)
+                            .setAction("Give Permission", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // request permission
+                                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+
+                                }
+                            })
+                            .show();
+                } else {
+                    // request permission
+                    permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE);
+                }
+
+            } else {
+                // galery
+                Intent intentToGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                activityResultLauncher.launch(intentToGallery);
+            }
         }
+
     }
 
     private void registerLauncher() {
@@ -79,8 +109,8 @@ public class ArtActivity extends AppCompatActivity {
                                 ImageDecoder.Source source = ImageDecoder.createSource(getContentResolver(), imageData);
                                 selectedImage = ImageDecoder.decodeBitmap(source);
                                 binding.imageView.setImageBitmap(selectedImage);
-                            }else {
-                                selectedImage = MediaStore.Images.Media.getBitmap(getContentResolver(),imageData);
+                            } else {
+                                selectedImage = MediaStore.Images.Media.getBitmap(getContentResolver(), imageData);
                                 binding.imageView.setImageBitmap(selectedImage);
                             }
                         } catch (Exception e) {
@@ -96,7 +126,7 @@ public class ArtActivity extends AppCompatActivity {
                 if (result) {
                     // permission granted
                     Intent intentToGallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-
+                    activityResultLauncher.launch(intentToGallery);
                 } else {
                     // permission denied
                     Toast.makeText(ArtActivity.this, "Permission needed!", Toast.LENGTH_SHORT).show();
