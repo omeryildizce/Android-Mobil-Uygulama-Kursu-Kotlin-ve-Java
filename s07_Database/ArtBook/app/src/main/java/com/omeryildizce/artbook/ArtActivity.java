@@ -11,6 +11,8 @@ import androidx.core.content.ContextCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteStatement;
 import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.net.Uri;
@@ -23,11 +25,14 @@ import android.widget.Toast;
 import com.google.android.material.snackbar.Snackbar;
 import com.omeryildizce.artbook.databinding.ActivityArtBinding;
 
+import java.io.ByteArrayOutputStream;
+
 public class ArtActivity extends AppCompatActivity {
     private ActivityArtBinding binding;
     ActivityResultLauncher<Intent> activityResultLauncher;
     ActivityResultLauncher<String> permissionLauncher;
     Bitmap selectedImage;
+    SQLiteDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,11 +40,52 @@ public class ArtActivity extends AppCompatActivity {
         binding = ActivityArtBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+
         registerLauncher();
+
     }
 
     public void save(View view) {
+        String name = binding.nameText.getText().toString();
+        String artistName = binding.artistText.getText().toString();
+        String year = binding.yearText.getText().toString();
+        Bitmap smalImage = makeSmallerImage(selectedImage, 500);
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        smalImage.compress(Bitmap.CompressFormat.PNG, 70, outputStream);
+        byte[] byteArray = outputStream.toByteArray();
 
+        try {
+            database = this.openOrCreateDatabase("Arts", MODE_PRIVATE, null);
+            database.execSQL("create table if not exists arts(id integer primary key AUTOINCREMENT, artname varchar, paintername varchar, year varchar, image blob ) ");
+            String sqlString = "insert into arts (artname, paintername, year , image) values (?, ?, ?, ?)";
+            SQLiteStatement sqLiteStatement = database.compileStatement(sqlString);
+            sqLiteStatement.bindString(1, name);
+            sqLiteStatement.bindString(2, artistName);
+            sqLiteStatement.bindString(3, year);
+            sqLiteStatement.bindBlob(4, byteArray);
+            sqLiteStatement.execute();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public Bitmap makeSmallerImage(Bitmap image, int maximumSize) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        float bitmapRatio = (float) width / (float) height;
+        if (bitmapRatio > 1) {
+            width = maximumSize;
+            height = (int) (width / bitmapRatio);
+        } else {
+            height = maximumSize;
+            width = (int) (height * bitmapRatio);
+        }
+        return Bitmap.createScaledBitmap(image, width, height, true);
     }
 
     public void selectImage(View view) {
