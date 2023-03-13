@@ -10,11 +10,16 @@
         android:id="@+id/selectedImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:maxHeight="500dp"
+        android:maxWidth="500dp"
+        android:contentDescription="select image"
         android:onClick="selectImage"
         app:layout_constraintBottom_toTopOf="@+id/commentText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/selectimage"
-        tools:layout_editor_absoluteX="60dp" />
+        app:srcCompat="@drawable/selectimage" />
 
     <EditText
         android:id="@+id/commentText"
@@ -23,7 +28,9 @@
 
         android:ems="10"
         android:hint="Enter Comment"
+        android:maxHeight="200dp"
         android:inputType="textMultiLine|text"
+        android:minHeight="48dp"
         app:layout_constraintBottom_toTopOf="@+id/uploadButton"
         app:layout_constraintEnd_toEndOf="@+id/selectedImage"
         app:layout_constraintHorizontal_bias="0.5"
