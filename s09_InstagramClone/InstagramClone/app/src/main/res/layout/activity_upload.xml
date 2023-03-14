@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UploadActivity">
+    tools:context=".view.UploadActivity">
 
     <ImageView
         android:id="@+id/selectedImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
+        android:minWidth="200dp"
+        android:minHeight="200dp"
         android:maxHeight="500dp"
         android:maxWidth="500dp"
+        android:adjustViewBounds="true"
         android:contentDescription="select image"
         android:onClick="selectImage"
         app:layout_constraintBottom_toTopOf="@+id/commentText"
