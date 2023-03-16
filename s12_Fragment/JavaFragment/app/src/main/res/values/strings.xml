@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">JavaFragment</string>
+    <string name="_2nd_fragment">2nd Fragment</string>
+    <string name="_1st_fragment">1st Fragment</string>
+</resources>
