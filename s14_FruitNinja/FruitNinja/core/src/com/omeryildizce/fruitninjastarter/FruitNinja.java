@@ -8,6 +8,12 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class FruitNinja extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture background;
+	Texture apple;
+	Texture bill;
+	Texture cherry;
+	Texture ruby;
+
+
 
 	@Override
 	public void create () {
