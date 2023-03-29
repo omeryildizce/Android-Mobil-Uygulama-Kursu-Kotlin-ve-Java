@@ -19,5 +19,5 @@ fun main(args: Array<String>) {
     val myResult = myAge?.compareTo(2) ?: -100
     println(myResult)
 
-    
+
 }
