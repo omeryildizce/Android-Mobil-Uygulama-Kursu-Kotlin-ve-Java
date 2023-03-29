@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SimpleCalculator</string>
+    <string name="sum">+</string>
+    <string name="number">please enter a number</string>
 </resources>
