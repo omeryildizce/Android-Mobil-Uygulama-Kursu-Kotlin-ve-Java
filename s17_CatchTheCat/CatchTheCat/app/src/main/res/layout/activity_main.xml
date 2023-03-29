@@ -4,15 +4,339 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/my_gradient"
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:layout_marginTop="16dp"
+        android:text="Time: 00:15"
+        android:textAlignment="center"
+        android:textColor="#FF0000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/score"
+        app:layout_constraintStart_toStartOf="@+id/score"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Score: 000"
+        android:textAlignment="center"
+        android:textColor="#64DD17"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.448"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/time" />
+
+    <TableLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="32dp"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/score">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat03"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat04"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat05"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat06"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat07"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat08"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat09"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat11"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat22"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="4dp"
+            android:gravity="center"
+            android:padding="4dp">
+
+            <ImageView
+                android:id="@+id/cat26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+
+            <ImageView
+                android:id="@+id/cat30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:onClick="increaseScore"
+                app:srcCompat="@drawable/cat" />
+        </TableRow>
+
+    </TableLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
