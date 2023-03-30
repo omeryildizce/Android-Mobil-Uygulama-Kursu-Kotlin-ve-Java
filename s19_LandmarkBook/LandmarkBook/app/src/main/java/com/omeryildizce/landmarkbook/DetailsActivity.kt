@@ -16,15 +16,17 @@ class DetailsActivity : AppCompatActivity() {
         setContentView(view)
         val intent = intent
 
-        val selectedLandmark = getSerializable(this, "landmark", Landmark::class.java)
-        binding.countryText.text = selectedLandmark.country
-        binding.nameText.text = selectedLandmark.name
-        binding.imageViewLandmark.setImageResource(selectedLandmark.image)
+        // val selectedLandmark = getSerializable(this, "landmark", Landmark::class.java)
+        val selectedLandmark = MySingelton.chosenLandmark
+        if (selectedLandmark != null) {
+            binding.countryText.text = selectedLandmark.country
+            binding.nameText.text = selectedLandmark.name
+            binding.imageViewLandmark.setImageResource(selectedLandmark.image)
+        }
     }
 
-    fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T
-    {
-        return if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
+    fun <T : Serializable?> getSerializable(activity: Activity, name: String, clazz: Class<T>): T {
+        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU)
             activity.intent.getSerializableExtra(name, clazz)!!
         else
             activity.intent.getSerializableExtra(name) as T
