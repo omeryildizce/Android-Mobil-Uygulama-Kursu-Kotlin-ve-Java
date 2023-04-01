@@ -1,0 +1,5 @@
+package com.omeryildizce.instagramclone.model
+
+data class Post(val email:String, val comment:String, val downloadUrl:String, val username:String) {
+
+}
