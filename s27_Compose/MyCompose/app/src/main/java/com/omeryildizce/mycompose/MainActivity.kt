@@ -12,7 +12,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.omeryildizce.mycompose.ui.theme.MyComposeTheme
 
 class MainActivity : ComponentActivity() {
@@ -20,19 +22,31 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyComposeTheme {
-                Gretting("merhaba")
+                MainScreen()
 
             }
         }
-        
-     }
+
+    }
 
 
 }
 
 @Composable
-fun Gretting(key: String) {
-    Text(text = "$key dünya")
+fun MainScreen(){
+     Text(
+        text = "Merhaba!",
+        color = MaterialTheme.colors.error,
+        fontSize = 25.sp,
+        fontWeight = FontWeight.ExtraBold
+    )
+
+    Text(
+        text = "Merhaba Dünya!",
+        color = MaterialTheme.colors.error,
+        fontSize = 25.sp,
+        fontWeight = FontWeight.ExtraBold
+    )
 }
 
 
@@ -40,20 +54,6 @@ fun Gretting(key: String) {
 @Composable
 fun DefaultPreview() {
     MyComposeTheme {
-        Gretting(key = "merhaba")
-
+        MainScreen()
     }
 }
-
-@Preview(name = "page2", showBackground = true)
-@Composable
-fun Default1Preview() {
-    MyComposeTheme {
-        Gretting(key = "selam")
-
-    }
-}
-
-
-
-
