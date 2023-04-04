@@ -14,17 +14,21 @@ import io.reactivex.Observable
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.*
 import retrofit2.*
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class MainActivity : AppCompatActivity() , CryptoAdapter.Listener{
+class MainActivity : AppCompatActivity(), CryptoAdapter.Listener {
     private val BASE_URL = "https://raw.githubusercontent.com/"
     private lateinit var binding: ActivityMainBinding
     private lateinit var cryptoModels: ArrayList<CryptoModel>
-    private lateinit var cryptoAdapter : CryptoAdapter
-    private lateinit var compositeDisposable : CompositeDisposable
-
+    private lateinit var cryptoAdapter: CryptoAdapter
+    private lateinit var compositeDisposable: CompositeDisposable
+    private lateinit var job :  Job
+    private var exceptionHandler: CoroutineExceptionHandler = CoroutineExceptionHandler { coroutineContext, throwable ->
+        println("Error: ${throwable.localizedMessage}")
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -37,40 +41,45 @@ class MainActivity : AppCompatActivity() , CryptoAdapter.Listener{
         loadData()
 
 
-
     }
 
     private fun loadData() {
+        /* val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
+             .addConverterFactory(GsonConverterFactory.create())
+             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+             .build()
+             .create(CryptoApi::class.java)
+
+         compositeDisposable.add(retrofit.getData()
+             .subscribeOn(Schedulers.io())
+             .observeOn(AndroidSchedulers.mainThread())
+             .subscribe(this::handleREsponse))
+ */
+
         val retrofit = Retrofit.Builder().baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .build()
+            .addConverterFactory(GsonConverterFactory.create()).build()
             .create(CryptoApi::class.java)
 
-        compositeDisposable.add(retrofit.getData()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(this::handleREsponse))
+        job = CoroutineScope(Dispatchers.IO).launch{
+            val response = retrofit.getData()
+            withContext(Dispatchers.Main + exceptionHandler){
+                if (response.isSuccessful){
+                    response.body().let {
+                        cryptoModels = ArrayList(it)
+                        cryptoModels.let {
+                            cryptoAdapter = CryptoAdapter(it, this@MainActivity)
+                            binding.recyclerView.adapter = cryptoAdapter
 
-
-
-        // val service = retrofit.create(CryptoApi::class.java)
-        // val call = service.getData()
-        // retrofitCall(call)
-
-
-    }
-    private fun handleREsponse(cryptoList: List<CryptoModel>){
-        cryptoModels = ArrayList(cryptoList)
-        cryptoModels.let {
-            cryptoAdapter = CryptoAdapter(it, this@MainActivity)
-            binding.recyclerView.adapter = cryptoAdapter
+                        }
+                    }
+                }
+            }
         }
-    }
 
-    /*
-    private fun retrofitCall(call: Observable<List<CryptoModel>>) {
-        call.enqueue(object : Callback<List<CryptoModel>> {
+
+        /*
+         val call = service.getData()
+         call.enqueue(object : Callback<List<CryptoModel>> {
             override fun onResponse(
                 call: Call<List<CryptoModel>>,
                 response: Response<List<CryptoModel>>,
@@ -89,8 +98,21 @@ class MainActivity : AppCompatActivity() , CryptoAdapter.Listener{
                 Toast.makeText(this@MainActivity, t.localizedMessage, Toast.LENGTH_SHORT).show()
             }
         })
+
+         */
+
+
     }
-    */
+
+    private fun handleREsponse(cryptoList: List<CryptoModel>) {
+        cryptoModels = ArrayList(cryptoList)
+        cryptoModels.let {
+            cryptoAdapter = CryptoAdapter(it, this@MainActivity)
+            binding.recyclerView.adapter = cryptoAdapter
+        }
+    }
+
+
     override fun onItemCick(cryptoModel: CryptoModel) {
 
     }
@@ -98,5 +120,8 @@ class MainActivity : AppCompatActivity() , CryptoAdapter.Listener{
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.clear()
+        job.cancel()
     }
+
+
 }
