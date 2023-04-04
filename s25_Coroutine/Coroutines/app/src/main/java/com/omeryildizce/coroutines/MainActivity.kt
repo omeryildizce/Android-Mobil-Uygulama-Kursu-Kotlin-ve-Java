@@ -30,6 +30,7 @@ class MainActivity : AppCompatActivity() {
         println("run blocking end")
         */
 
+        /*
         // Global scope
         println("global scope start")
         GlobalScope.launch {
@@ -37,5 +38,33 @@ class MainActivity : AppCompatActivity() {
             println("global scope")
         }
         println("global scope end")
+
+         */
+        /*
+        // Context
+        // CoroutineScope
+        println("CoroutineScope start")
+        CoroutineScope(Dispatchers.Default).launch {
+            delay(5000)
+            println("CoroutineScope")
+        }
+        println("CoroutineScope end")
+
+         */
+
+        runBlocking {
+            launch(Dispatchers.Main) {
+                println("Main Thread: ${Thread.currentThread().name}")
+            }
+            launch(Dispatchers.IO) {
+                println("IO Thread: ${Thread.currentThread().name}")
+            }
+            launch(Dispatchers.Default) {
+                println("Default Thread: ${Thread.currentThread().name}")
+            }
+            launch(Dispatchers.Unconfined) {
+                println("Unconfined: ${Thread.currentThread().name}")
+            }
+        }
     }
 }
