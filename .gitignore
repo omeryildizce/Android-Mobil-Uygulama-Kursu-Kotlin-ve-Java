@@ -29,3 +29,4 @@ google-services.json
 # Android Profiling
 *.hprof
 s28_StateManagement/CryptoCrazy/app/src/main/java/com/omeryildizce/cryptocrazy/binancekey/Binance_Key.kt
+s28_StateManagement/CryptoCrazy/app/src/main/java/com/omeryildizce/cryptocrazy/binancekey/ApiKeys.kt
