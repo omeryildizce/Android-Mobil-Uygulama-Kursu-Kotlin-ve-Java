@@ -31,3 +31,4 @@ google-services.json
 s28_StateManagement/CryptoCrazy/app/src/main/java/com/omeryildizce/cryptocrazy/binancekey/Binance_Key.kt
 s28_StateManagement/CryptoCrazy/app/src/main/java/com/omeryildizce/cryptocrazy/binancekey/ApiKeys.kt
 s28_StateManagement/CryptoCrazy/app/src/main/java/com/omeryildizce/cryptocrazy/binancekey/Binance_Key.kt
+s28_StateManagement/CryptoCompose/app/src/main/java/com/omeryildizce/cryptocompose/apikeys/ApiKeys.kt
